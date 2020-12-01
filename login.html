@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+            integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+            integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="container col-sm-8 col-md-6 col-lg-5 col-xl-4">
+    <h1 class="text-center">Workouts</h1>
+    <div class="spacer"></div>
+    <label for="username">Username</label>
+    <small id="username-invalid" class="text-danger"></small>
+    <div class="input-group mb-3">
+        <input id='username' type="text" class="form-control" aria-label="username">
+    </div>
+    <label for="password">Password</label>
+    <small id="password-invalid" class="text-danger"></small>
+    <div class="input-group mb-3">
+        <input id='password' type="text" class="form-control" aria-label="password">
+    </div>
+    <div class="text-right">
+        <small id="feedback" class="input-group text-muted"></small>
+        <button id="sign-up" type="button" class="btn btn-primary">Sign Up</button>
+        <button id="login" type="button" class="btn btn-primary">Login</button>
+    </div>
+</div>
+</body>
+<script src="scripts/login.js" type="module"></script>
+</html>
