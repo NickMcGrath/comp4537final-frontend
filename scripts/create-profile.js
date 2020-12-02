@@ -1,48 +1,43 @@
+import {get_form_data, is_valid_form_data} from "./profile-common.js";
 import strings from "./strings.js";
+import errors from "./error.js";
 
 const create_button = document.getElementById("create");
+const feedback = document.getElementById("feedback");
 
-create_button.addEventListener("click", () => {
-    let data = get_profile_data();
-    if (!is_valid_profile_data(data)) {
+create_button.addEventListener("click", async () => {
+    let data = get_form_data();
+    if (!is_valid_form_data(data)) {
         return;
     }
-    create().catch();
+    try {
+        await create(data);
+    } catch (err) {
+        if (err instanceof errors.UserExistsError || err instanceof errors.ValidationError) {
+            feedback.innerHTML = err.message;
+        } else {
+            console.log(err);
+        }
+    }
 })
 
-function get_profile_data() {
-    return {
-        "first_name": document.getElementById("f_name").value,
-        "last_name": document.getElementById("l_name").value,
-        "age": document.getElementById("age").value,
-        "weight_value": document.getElementById("weight").value,
-        "weight_unit": (document.getElementById("lbs").classList.value.includes("active")) ? "lbs" : "kgs"
-    };
-}
-
-function is_valid_profile_data(data) {
-    let valid = true;
-    if (!data.first_name.length || data.first_name.length > 40) {
-
-    }
-}
-
-async function create() {
-
-    try {
-        let response = await fetch(`${strings.BASE_URL}/profile`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${window.localStorage.getItem('token')}`
-            },
-            body: JSON.stringify(data),
-        })
-        console.log(response);
-        if (!response.ok) {
-            console.log("Something happened on the server");
+async function create(data) {
+    let response = await fetch(`${strings.BASE_URL}/profile`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${window.localStorage.getItem('token')}`
+        },
+        body: JSON.stringify(data),
+    })
+    if (!response.ok) {
+        if (response.status === 409) {
+            throw new errors.UserExistsError("You have already created a profile");
         }
-    } catch (err) {
-        console.log(err);
+        else {
+            throw new errors.ValidationError("Server could not validate fields");
+        }
+    } else {
+        window.location.href = "./workouts.html";
     }
 }

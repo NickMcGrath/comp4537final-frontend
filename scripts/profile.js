@@ -1,23 +1,44 @@
-function get_data() {
-    return {
-        "first_name": document.getElementById("f_name").value,
-        "last_name": document.getElementById("l_name").value,
-        "age": document.getElementById("age").value,
-        "weight_value": document.getElementById("weight").value,
-        "weight_unit": (document.getElementById("lbs").classList.value.includes("active")) ? "lbs" : "kgs"
-    };
-}
+import {get_form_data, is_valid_form_data} from "./profile-common.js";
+import errors from "./error.js";
+import strings from "./strings.js";
 
-function pre_send_validate(data) {
-    return true;
-}
+const update_button = document.getElementById("update");
+const feedback = document.getElementById("feedback");
 
-function submit() {
-    let data = get_data();
-    console.log(data)
-    let is_valid = pre_send_validate(data);
-    if (is_valid !== true) {
-        document.getElementById("result").innerHTML = is_valid;
+update_button.addEventListener("click", async () => {
+    let data = get_form_data();
+    if (!is_valid_form_data(data)) {
         return;
+    }
+    try {
+        await update(data);
+    } catch (err) {
+        if (err instanceof errors.UserExistsError || err instanceof errors.ValidationError) {
+            feedback.innerHTML = err.message;
+        } else {
+            console.log(err);
+        }
+    }
+})
+
+async function update(data) {
+    let response = await fetch(`${strings.BASE_URL}/profile`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${window.localStorage.getItem('token')}`
+        },
+        body: JSON.stringify(data),
+    })
+    if (!response.ok) {
+        if (response.status === 401) {
+            throw new errors.AuthenticationError("User not found");
+        } else {
+            throw new errors.ValidationError("Server could not validate fields");
+        }
+    } else {
+        feedback.classList.toggle("text-danger");
+        feedback.classList.toggle("text-success");
+        feedback.innerHTML = "Saved";
     }
 }

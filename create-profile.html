@@ -14,22 +14,26 @@
 
 <body>
 
-<div class="container col-sm-7 col-md-6 col-lg-5">
+<div class="container col-sm-8 col-md-6 col-lg-5 col-xl-4">
     <h1 class="text-center">Profile</h1>
     <div class="spacer"></div>
     <label for="f_name">First Name</label>
+    <small id="first-name-invalid" class="text-danger"></small>
     <div class="input-group mb-3">
         <input id='f_name' type="text" class="form-control" aria-label="First Name">
     </div>
     <label for="l_name">Last Name</label>
+    <small id="last-name-invalid" class="text-danger"></small>
     <div class="input-group mb-3">
         <input id='l_name' type="text" class="form-control" aria-label="Last Name">
     </div>
     <label for="age">Age</label>
+    <small id="age-invalid" class="text-danger"></small>
     <div class="input-group mb-3">
         <input id='age' type="number" class="form-control" aria-label="Age">
     </div>
     <label for="weight">Weight</label>
+    <small id="weight-invalid" class="text-danger"></small>
     <div class="input-group mb-3">
         <input id='weight' type="text" class="form-control" aria-label="Weight">
         <div class="btn-group btn-group-toggle" data-toggle="buttons">
@@ -41,8 +45,8 @@
             </label>
         </div>
     </div>
-    <small id="result" class="input-group text-muted"></small>
-    <div class="text-center">
+    <div class="text-right">
+        <small id="feedback" class="text-danger mr-2"></small>
         <button id="create" type="button" class="btn btn-primary">Create</button>
     </div>
 </div>
