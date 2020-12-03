@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+    <meta charset="UTF-8">
     <title>Profile</title>
     <link rel="stylesheet" href="css/style.css">
     <script src="https://code.jquery.com/jquery-3.5.1.js"
@@ -15,7 +15,7 @@
 
 <body>
 
-<nav class="navbar fixed-top navbar-expand navbar navbar-dark bg-primary">
+<nav class="navbar justify-content-center fixed-top navbar-expand navbar-dark bg-primary">
     <div>
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
@@ -35,15 +35,15 @@
 <div class="container col-sm-8 col-md-6 col-lg-5 col-xl-4">
     <h1 class="text-center">Profile</h1>
     <div class="spacer"></div>
-    <label for="f_name">First Name</label>
+    <label for="first_name">First Name</label>
     <small id="first-name-invalid" class="text-danger"></small>
     <div class="input-group mb-3">
-        <input id='f_name' type="text" class="form-control" aria-label="First Name">
+        <input id='first_name' type="text" class="form-control" aria-label="First Name">
     </div>
-    <label for="l_name">Last Name</label>
+    <label for="last_name">Last Name</label>
     <small id="last-name-invalid" class="text-danger"></small>
     <div class="input-group mb-3">
-        <input id='l_name' type="text" class="form-control" aria-label="Last Name">
+        <input id='last_name' type="text" class="form-control" aria-label="Last Name">
     </div>
     <label for="age">Age</label>
     <small id="age-invalid" class="text-danger"></small>
@@ -55,11 +55,11 @@
     <div class="input-group mb-3">
         <input id='weight' type="text" class="form-control" aria-label="Weight">
         <div class="btn-group btn-group-toggle" data-toggle="buttons">
-            <label id="lbs" class="btn btn-secondary active">
-                <input type="radio" name="lbs" checked>lbs
+            <label id="lbs" class="btn btn-secondary">
+                <input type="radio" name="weight_unit" value="lbs">lbs
             </label>
-            <label id="kg" class="btn btn-secondary">
-                <input type="radio" name="kg">kgs
+            <label id="kgs" class="btn btn-secondary">
+                <input type="radio" name="weight_unit" value="kgs">kgs
             </label>
         </div>
     </div>

@@ -1,7 +1,7 @@
 export function get_form_data() {
     return {
-        "first_name": document.getElementById("f_name").value,
-        "last_name": document.getElementById("l_name").value,
+        "first_name": document.getElementById("first_name").value,
+        "last_name": document.getElementById("last_name").value,
         "age": document.getElementById("age").value,
         "weight_value": document.getElementById("weight").value,
         "weight_unit": (document.getElementById("lbs").classList.value.includes("active")) ? "lbs" : "kgs"

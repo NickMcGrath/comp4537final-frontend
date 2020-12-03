@@ -26,4 +26,11 @@ class UserExistsError extends Error {
     }
 }
 
-export default {ValidationError, AuthenticationError, AuthorizationError, UserExistsError}
+class ServerError extends Error {
+    constructor(message) {
+        super(message);
+        this.name = "ServerError";
+    }
+}
+
+export default {ValidationError, AuthenticationError, AuthorizationError, UserExistsError, ServerError}

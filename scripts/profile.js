@@ -1,9 +1,19 @@
 import {get_form_data, is_valid_form_data} from "./profile-common.js";
+import {get_profile, fill_form_data} from "./get-profile.js";
 import errors from "./error.js";
 import strings from "./strings.js";
 
 const update_button = document.getElementById("update");
 const feedback = document.getElementById("feedback");
+
+(async () => {
+    try {
+        let data = await get_profile();
+        fill_form_data(data);
+    } catch (err) {
+        console.log(err);
+    }
+})();
 
 update_button.addEventListener("click", async () => {
     let data = get_form_data();
