@@ -46,11 +46,20 @@
             </label>
         </div>
     </div>
+    <div class="form-group">
+        <label for="profile-photo">Profile Photo</label>
+        <input id="profile-photo" type="file" class="form-control-file">
+    </div>
     <div class="text-right">
         <small id="feedback" class="text-danger mr-2"></small>
         <button id="create" type="button" class="btn btn-primary">Create</button>
     </div>
 </div>
-<script src="scripts/create-profile.js" type="module"></script>
+
+<img id="my-image" alt="my-image">
+<script src="scripts/create-profile.js"></script>
+<script src="scripts/profile-common.js"></script>
+<script src="scripts/strings.js"></script>
+<script src="scripts/error.js"></script>
 </body>
 </html>
