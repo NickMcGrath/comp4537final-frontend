@@ -20,7 +20,6 @@ export async function get_profile() {
 }
 
 export function fill_form_data(data) {
-    console.log(data);
     document.getElementById("first_name").value = data.first_name;
     document.getElementById("last_name").value = data.last_name;
     document.getElementById("age").value = data.age;

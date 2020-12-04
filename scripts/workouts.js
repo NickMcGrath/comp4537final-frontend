@@ -8,6 +8,7 @@ const add_workout_button = document.getElementById("add-workout");
     if (data.length === 0) {
         let container = document.getElementById("main-content");
         let element = document.createElement("h3");
+        element.classList.toggle("text-center");
         element.id = "no-workouts";
         element.innerHTML = "You have not created any workouts.";
         container.appendChild(element);

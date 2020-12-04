@@ -9,7 +9,8 @@ const id = url_params.get('id');
     let data = await get_sets();
     if (data.length===0) {
         let container = document.getElementById("main-content");
-        let element = document.createElement("h3")
+        let element = document.createElement("h3");
+        element.classList.toggle("text-center");
         element.id = "no-sets";
         element.innerHTML = "You have not created any sets."
         container.appendChild(element);
@@ -63,18 +64,42 @@ async function create_set() {
 }
 
 function render_set(data) {
-    let date = new Date(Date.parse(data.date_created)).toDateString();
     let div = document.createElement("div");
     div.classList.add("container", "border", "border-primary", "rounded", "m-2");
     div.innerHTML = `
-    <div class="row align-items-center">
-        <div class="col-9">
-            Workout ${date}
+    <div class="spacer"></div>
+    <label for="first_name">First Name</label>
+    <small id="first-name-invalid" class="text-danger"></small>
+    <div class="input-group mb-3">
+        <input id='first_name' type="text" class="form-control" aria-label="First Name">
+    </div>
+    <label for="last_name">Last Name</label>
+    <small id="last-name-invalid" class="text-danger"></small>
+    <div class="input-group mb-3">
+        <input id='last_name' type="text" class="form-control" aria-label="Last Name">
+    </div>
+    <label for="age">Age</label>
+    <small id="age-invalid" class="text-danger"></small>
+    <div class="input-group mb-3">
+        <input id='age' type="number" class="form-control" aria-label="Age">
+    </div>
+    <label for="weight">Weight</label>
+    <small id="weight-invalid" class="text-danger"></small>
+    <div class="input-group mb-3">
+        <input id='weight' type="text" class="form-control" aria-label="Weight">
+        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+            <label id="lbs" class="btn btn-secondary">
+                <input type="radio" name="weight_unit" value="lbs">lbs
+            </label>
+            <label id="kgs" class="btn btn-secondary">
+                <input type="radio" name="weight_unit" value="kgs">kgs
+            </label>
         </div>
-        <div class="col-3 text-right p-1">
-            <button type="button" class="btn btn-success" onclick="window.location.href='./sets.html?id=${data.id}'">Edit</button>
-        </div>
-    </div>`;
+    </div>
+    <div class="text-right">
+        <small id="feedback" class="text-danger mr-2"></small>
+        <button id="update" type="button" class="btn btn-primary">Update</button>
+    </div>`
     let container = document.getElementById("main-content");
     container.appendChild(div);
 }
