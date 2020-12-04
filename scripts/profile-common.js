@@ -5,7 +5,7 @@ export async function get_form_data() {
         "age": document.getElementById("age").value,
         "weight_value": document.getElementById("weight").value,
         "weight_unit": (document.getElementById("lbs").classList.value.includes("active")) ? "lbs" : "kgs",
-        "image": await image_to_blob("display-image")
+        "image": await image_to_blob("image")
     };
 }
 

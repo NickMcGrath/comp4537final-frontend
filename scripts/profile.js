@@ -16,7 +16,7 @@ const feedback = document.getElementById("feedback");
 })();
 
 update_button.addEventListener("click", async () => {
-    let data = get_form_data();
+    let data = await get_form_data();
     if (!is_valid_form_data(data)) {
         return;
     }
