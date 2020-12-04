@@ -1,6 +1,6 @@
-// import {get_form_data, is_valid_form_data} from "./profile-common.js";
-// import strings from "./strings.js";
-// import errors from "./error.js";
+import {get_form_data, is_valid_form_data} from "./profile-common.js";
+import strings from "./strings.js";
+import errors from "./error.js";
 
 const create_button = document.getElementById("create");
 const feedback = document.getElementById("feedback");
@@ -39,38 +39,4 @@ async function create(data) {
     } else {
         window.location.href = "./workouts.html";
     }
-}
-
-/**
- * Converts an image to Base64.
- * @param file_tag id of the input type='file' element
- * @return Promise, on success returns Base64 image
- */
-function image_to_blob(file_tag) {
-    return new Promise((res, rej) => {
-        let file = document.getElementById(file_tag).files[0];
-        let file_reader = new FileReader();
-
-        file_reader.addEventListener("load", () => {
-            console.log("image_to_blob() Encoded!");
-            console.log(file_reader.result);
-            res(file_reader.result);
-        }, false);
-
-        file_reader.onerror = (e) => {
-            rej(new Error("Base64 error\n" + e));
-        };
-
-        file_reader.readAsDataURL(file);
-    });
-}
-
-/**
- * Takes a Base64 image blob and sets it to an img element.
- * @param blob Base64 image from FileReader
- * @param image_tag image tag to append to
- */
-function blob_to_image(blob, image_tag) {
-    let image = document.getElementById(image_tag);
-    image.src = blob;
 }
