@@ -27,5 +27,4 @@ export function fill_form_data(data) {
     document.getElementById("weight").value = data.weight_value;
     document.querySelector(`input[value="${data.weight_unit}"]`).checked = true;
     document.getElementById("display-image").src = data.image;
-    document.getElementById("image").files[0] = data.image;
 }
