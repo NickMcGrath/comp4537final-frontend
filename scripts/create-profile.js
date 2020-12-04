@@ -1,4 +1,4 @@
-import {get_form_data, is_valid_form_data} from "./profile-common.js";
+import {get_form_data, is_valid_form_data, image_to_blob} from "./profile-common.js";
 import strings from "./strings.js";
 import errors from "./error.js";
 

@@ -5,7 +5,7 @@ export async function get_form_data() {
         "age": document.getElementById("age").value,
         "weight_value": document.getElementById("weight").value,
         "weight_unit": (document.getElementById("lbs").classList.value.includes("active")) ? "lbs" : "kgs",
-        "image": await image_to_blob("image")
+        "image": await image_to_blob("display-image")
     };
 }
 
@@ -25,6 +25,10 @@ export function is_valid_form_data(data) {
     }
     if (!data.weight_value || data.weight_value < 1 || data.weight_value > 1000) {
         document.getElementById("weight-invalid").innerText = "must be between 1 and 1000";
+        valid = false;
+    }
+    if (!data.image || data.image.size > 2000000) {
+        document.getElementById("image-invalid").innerText = "must be an image and under 2MB";
         valid = false;
     }
     return valid;
@@ -52,14 +56,4 @@ export function image_to_blob(file_tag) {
 
         file_reader.readAsDataURL(file);
     });
-}
-
-/**
- * Takes a Base64 image blob and sets it to an img element.
- * @param blob Base64 image from FileReader
- * @param image_tag image tag to append to
- */
-export function blob_to_image(blob, image_tag) {
-    let image = document.getElementById(image_tag);
-    image.src = blob;
 }
