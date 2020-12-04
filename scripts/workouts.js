@@ -5,11 +5,11 @@ const add_workout_button = document.getElementById("add-workout");
 
 (async () => {
     let data = await get_workouts();
-    if (data.length===0) {
+    if (data.length === 0) {
         let container = document.getElementById("main-content");
-        let element = document.createElement("h3")
+        let element = document.createElement("h3");
         element.id = "no-workouts";
-        element.innerHTML = "You have not created any workouts."
+        element.innerHTML = "You have not created any workouts.";
         container.appendChild(element);
     } else {
         for (let workout of data) {
@@ -22,17 +22,16 @@ add_workout_button.onclick = create_and_render;
 
 async function get_workouts() {
     let response = await fetch(`${strings.BASE_URL}/workouts/latest`, {
-        method: 'GET',
+        method: "GET",
         headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${window.localStorage.getItem('token')}`
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${window.localStorage.getItem("token")}`
         }
-    })
+    });
     if (!response.ok) {
         if (response.status === 401) {
             throw new errors.AuthenticationError("Not authenticated");
-        }
-        else {
+        } else {
             console.log(response);
             throw new errors.ServerError("Server error");
         }
@@ -42,17 +41,16 @@ async function get_workouts() {
 
 async function create_workout() {
     let response = await fetch(`${strings.BASE_URL}/workouts`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${window.localStorage.getItem('token')}`
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${window.localStorage.getItem("token")}`
         }
-    })
+    });
     if (!response.ok) {
         if (response.status === 401) {
             throw new errors.AuthenticationError("Not authenticated");
-        }
-        else {
+        } else {
             console.log(response);
             throw new errors.ServerError("Server error");
         }

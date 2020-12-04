@@ -69,17 +69,16 @@ function is_valid_form_data(data) {
 
 async function login(data) {
     let response = await fetch(`${strings.BASE_URL}/login`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
-    })
+    });
     if (!response.ok) {
         if (response.status === 401) {
             throw new errors.AuthenticationError("User not found");
-        }
-        else {
+        } else {
             throw new errors.ValidationError("Server could not validate fields");
         }
     }
@@ -88,17 +87,16 @@ async function login(data) {
 
 async function signup(data) {
     let response = await fetch(`${strings.BASE_URL}/user`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
-    })
+    });
     if (!response.ok) {
         if (response.status === 409) {
             throw new errors.UserExistsError("Username already exists");
-        }
-        else {
+        } else {
             throw new errors.ValidationError("Server could not validate fields");
         }
     }

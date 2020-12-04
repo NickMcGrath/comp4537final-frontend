@@ -27,8 +27,8 @@ export function is_valid_form_data(data) {
         document.getElementById("weight-invalid").innerText = "must be between 1 and 1000";
         valid = false;
     }
-    if (!data.image || data.image.size > 2000000) {
-        document.getElementById("image-invalid").innerText = "must be an image and under 2MB";
+    if (!data.image || data.image.size > 5000000) {
+        document.getElementById("image-invalid").innerText = "must be an image and under 5MB";
         valid = false;
     }
     return valid;
