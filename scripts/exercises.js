@@ -1,30 +1,8 @@
-import strings from "./strings.js";
-import errors from "./error.js";
-
+import {get_exercises} from "../models/exercise_model.js";
 
 (async () => {
     render_exercises(await get_exercises());
 })();
-
-
-async function get_exercises() {
-    let response = await fetch(`${strings.BASE_URL}/exercises`, {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${window.localStorage.getItem("token")}`
-        }
-    });
-    if (!response.ok) {
-        if (response.status === 401) {
-            throw new errors.AuthenticationError("Not authenticated");
-        } else {
-            console.log(response);
-            throw new errors.ServerError("Server error");
-        }
-    }
-    return await response.json();
-}
 
 function render_exercises(data) {
     let div = document.createElement("div");

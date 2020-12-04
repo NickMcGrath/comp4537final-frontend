@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Create Profile</title>
+    <title>Create Set</title>
     <link rel="stylesheet" href="css/style.css">
     <script src="https://code.jquery.com/jquery-3.5.1.js"
             integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
@@ -14,23 +14,39 @@
 </head>
 
 <body>
+
+<nav class="navbar justify-content-center fixed-top navbar-expand navbar-dark bg-primary">
+    <div>
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="./profile-update.html">Profile</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="./workouts.html">Workouts</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="./exercises.html">Exercises</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="spacer"></div>
 <div class="container col-sm-8 col-md-6 col-lg-5 col-xl-4">
-    <h1 class="text-center">Profile</h1>
+    <h1 class="text-center">Create Set</h1>
     <div class="spacer"></div>
-    <label for="first_name">First Name</label>
-    <small id="first-name-invalid" class="text-danger"></small>
+    <label for="exercise">Exercise</label>
     <div class="input-group mb-3">
-        <input id='first_name' type="text" class="form-control" aria-label="First Name">
+        <select id="exercise" class="custom-select">
+            <option selected>Exercise...</option>
+            <option value="1">Sit-ups</option>
+            <option value="2">Push-ups</option>
+        </select>
     </div>
-    <label for="last_name">Last Name</label>
-    <small id="last-name-invalid" class="text-danger"></small>
+    <label for="reps">Reps</label>
+    <small id="reps-invalid" class="text-danger"></small>
     <div class="input-group mb-3">
-        <input id='last_name' type="text" class="form-control" aria-label="Last Name">
-    </div>
-    <label for="age">Age</label>
-    <small id="age-invalid" class="text-danger"></small>
-    <div class="input-group mb-3">
-        <input id='age' type="number" class="form-control" aria-label="Age">
+        <input id='reps' type="number" class="form-control" aria-label="Reps">
     </div>
     <label for="weight">Weight</label>
     <small id="weight-invalid" class="text-danger"></small>
@@ -38,25 +54,23 @@
         <input id='weight' type="text" class="form-control" aria-label="Weight">
         <div class="btn-group btn-group-toggle" data-toggle="buttons">
             <label id="lbs" class="btn btn-secondary active">
-                <input type="radio" name="weight_unit" value="lbs" checked>lbs
+                <input type="radio" name="weight_unit" value="lbs">lbs
             </label>
             <label id="kgs" class="btn btn-secondary">
                 <input type="radio" name="weight_unit" value="kgs">kgs
             </label>
         </div>
     </div>
-    <div class="form-group">
-        <label for="image">Profile Photo</label>
-        <input id="image" type="file" accept="image/*" class="form-control-file">
+    <label for="timer">Timer</label>
+    <small id="timer-invalid" class="text-danger"></small>
+    <div class="input-group mb-3">
+        <input id='timer' type="number" class="form-control" aria-label="Timer">
     </div>
     <div class="text-right">
         <small id="feedback" class="text-danger mr-2"></small>
-        <button id="create" type="button" class="btn btn-primary">Create</button>
+        <button id="create-set" type="button" class="btn btn-primary">Create</button>
     </div>
 </div>
-<script src="scripts/create-profile.js" type="module"></script>
-<!--<script src="scripts/profile-common.js"></script>-->
-<!--<script src="scripts/strings.js"></script>-->
-<!--<script src="scripts/error.js"></script>-->
+<script src="scripts/set-create.js" type="module"></script>
 </body>
 </html>

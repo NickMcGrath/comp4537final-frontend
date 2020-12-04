@@ -1,5 +1,4 @@
-import strings from "./strings.js";
-import errors from "./error.js";
+import {create_workout, get_workouts} from "../models/workout_model.js";
 
 const add_workout_button = document.getElementById("add-workout");
 
@@ -20,44 +19,6 @@ const add_workout_button = document.getElementById("add-workout");
 })();
 
 add_workout_button.onclick = create_and_render;
-
-async function get_workouts() {
-    let response = await fetch(`${strings.BASE_URL}/workouts/latest`, {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${window.localStorage.getItem("token")}`
-        }
-    });
-    if (!response.ok) {
-        if (response.status === 401) {
-            throw new errors.AuthenticationError("Not authenticated");
-        } else {
-            console.log(response);
-            throw new errors.ServerError("Server error");
-        }
-    }
-    return await response.json();
-}
-
-async function create_workout() {
-    let response = await fetch(`${strings.BASE_URL}/workouts`, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${window.localStorage.getItem("token")}`
-        }
-    });
-    if (!response.ok) {
-        if (response.status === 401) {
-            throw new errors.AuthenticationError("Not authenticated");
-        } else {
-            console.log(response);
-            throw new errors.ServerError("Server error");
-        }
-    }
-    return await response.json();
-}
 
 function render_workout(data) {
     let date = new Date(Date.parse(data.date_created)).toDateString();

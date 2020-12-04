@@ -1,5 +1,5 @@
 import strings from "./strings.js";
-import errors from "./error.js";
+import errors from "./errors.js";
 
 const login_button = document.getElementById("login");
 const signup_button = document.getElementById("sign-up");
@@ -33,7 +33,7 @@ signup_button.addEventListener("click", async () => {
     try {
         let result = await signup(data);
         window.localStorage.setItem("token", result.token);
-        window.location.href = "./create-profile.html";
+        window.location.href = "./profile-create.html";
     } catch (err) {
         if (err instanceof errors.UserExistsError || err instanceof errors.ValidationError) {
             feedback.innerHTML = err.message;

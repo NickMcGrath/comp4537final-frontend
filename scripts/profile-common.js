@@ -5,7 +5,7 @@ export async function get_form_data() {
         "age": document.getElementById("age").value,
         "weight_value": document.getElementById("weight").value,
         "weight_unit": (document.getElementById("lbs").classList.value.includes("active")) ? "lbs" : "kgs",
-        "image": await image_to_blob("image")
+        "image": await image_to_blob("image", "display-image")
     };
 }
 
@@ -27,21 +27,22 @@ export function is_valid_form_data(data) {
         document.getElementById("weight-invalid").innerText = "must be between 1 and 1000";
         valid = false;
     }
-    if (!data.image || data.image.size > 5000000) {
-        document.getElementById("image-invalid").innerText = "must be an image and under 5MB";
-        valid = false;
-    }
     return valid;
 }
 
-/**
- * Converts an image to Base64.
- * @param file_tag id of the input type='file' element
- * @return Promise, on success returns Base64 image
- */
-export function image_to_blob(file_tag) {
+function image_to_blob(file_tag, fallback) {
     return new Promise((res, rej) => {
-        let file = document.getElementById(file_tag).files[0];
+        let file = document.getElementById(file_tag);
+        if (fallback && file.files.length === 0) {
+            let currentImage = document.getElementById(fallback);
+            if (currentImage) {
+                res(document.getElementById(fallback).src);
+            } else {
+                res("");
+            }
+        }
+        file = file.files[0];
+
         let file_reader = new FileReader();
 
         file_reader.addEventListener("load", () => {
