@@ -1,4 +1,4 @@
-export function get_form_data() {
+export async function get_form_data() {
     return {
         "first_name": document.getElementById("first_name").value,
         "last_name": document.getElementById("last_name").value,

@@ -1,4 +1,3 @@
-import profile_common from "./profile-common.js";
 import strings from "./strings.js";
 import errors from "./error.js";
 
