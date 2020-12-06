@@ -38,3 +38,21 @@ export async function create_workout() {
     }
     return await response.json();
 }
+
+export async function delete_workout(workout_id) {
+    let response = await fetch(`${strings.BASE_URL}/workouts/${workout_id}`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${window.localStorage.getItem("token")}`
+        }
+    });
+    if (!response.ok) {
+        if (response.status === 401) {
+            throw new errors.AuthenticationError("Not authenticated");
+        } else {
+            console.log(response);
+            throw new errors.ServerError("Server error");
+        }
+    }
+}

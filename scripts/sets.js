@@ -44,7 +44,6 @@ function render_set(data, index) {
 
 function edit_set(data) {
     return () => {
-        console.log("Edit data: ", data);
         localStorage.setItem("current_set", JSON.stringify(data));
         window.location.href = "./set-update.html";
     }
