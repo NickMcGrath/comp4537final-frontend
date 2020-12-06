@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Create Set</title>
+    <title>Update Set</title>
     <link rel="stylesheet" href="css/style.css">
     <script src="https://code.jquery.com/jquery-3.5.1.js"
             integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
@@ -32,7 +32,7 @@
 
 <div class="spacer"></div>
 <div class="container col-sm-8 col-md-6 col-lg-5 col-xl-4">
-    <h1 class="text-center">Create Set</h1>
+    <h1 class="text-center">Update Set</h1>
     <div class="spacer"></div>
     <label for="exercise">Exercise</label>
     <small id="exercise-invalid" class="text-danger"></small>
@@ -53,8 +53,8 @@
     <div class="input-group mb-3">
         <input id='weight' type="text" class="form-control" aria-label="Weight">
         <div class="btn-group btn-group-toggle" data-toggle="buttons">
-            <label id="lbs" class="btn btn-secondary active">
-                <input type="radio" name="weight_unit" value="lbs" checked>lbs
+            <label id="lbs" class="btn btn-secondary">
+                <input type="radio" name="weight_unit" value="lbs">lbs
             </label>
             <label id="kgs" class="btn btn-secondary">
                 <input type="radio" name="weight_unit" value="kgs">kgs
@@ -68,9 +68,9 @@
     </div>
     <div class="text-right">
         <small id="feedback" class="text-danger mr-2"></small>
-        <button id="create-set" type="button" class="btn btn-primary">Create</button>
+        <button id="update-set" type="button" class="btn btn-primary">Update</button>
     </div>
 </div>
-<script src="scripts/set-create.js" type="module"></script>
+<script src="scripts/set-update.js" type="module"></script>
 </body>
 </html>

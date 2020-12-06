@@ -33,4 +33,11 @@ class ServerError extends Error {
     }
 }
 
-export default {ValidationError, AuthenticationError, AuthorizationError, UserExistsError, ServerError}
+class NotFoundError extends Error {
+    constructor(message) {
+        super(message);
+        this.name = "NotFoundError";
+    }
+}
+
+export default {ValidationError, AuthenticationError, AuthorizationError, UserExistsError, ServerError, NotFoundError}

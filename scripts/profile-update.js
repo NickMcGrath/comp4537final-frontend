@@ -15,11 +15,11 @@ const feedback = document.getElementById("feedback");
 })();
 
 update_button.addEventListener("click", async () => {
-    let data = await get_form_data();
-    if (!is_valid_form_data(data)) {
-        return;
-    }
     try {
+        let data = await get_form_data();
+        if (!is_valid_form_data(data)) {
+            return;
+        }
         let result = await update_profile(data);
         if (result) {
             feedback.innerHTML = "Saved";

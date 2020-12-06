@@ -1,7 +1,9 @@
-import {get_exercises} from "../models/exercise_model.js";
+import {cache_exercises, get_exercises} from "../models/exercise_model.js";
 
 (async () => {
-    render_exercises(await get_exercises());
+    let exercises = await get_exercises();
+    cache_exercises(exercises);
+    render_exercises(exercises);
 })();
 
 function render_exercises(data) {

@@ -19,3 +19,12 @@ export async function get_exercises() {
     }
     return await response.json();
 }
+
+export function cache_exercises(data) {
+    localStorage.setItem("exercises", JSON.stringify(data));
+}
+
+export function get_exercises_from_cache() {
+    let local_exercises = localStorage.getItem("exercises");
+    return local_exercises ? JSON.parse(local_exercises) : undefined;
+}

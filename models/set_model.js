@@ -10,8 +10,8 @@ export async function get_sets(workout_id) {
         }
     })
     if (!response.ok) {
-        if (response.status === 401) {
-            throw new errors.AuthenticationError("Not authenticated");
+        if (response.status === 404) {
+            throw new errors.NotFoundError("Workout id not found");
         }
         else {
             console.log(response);
@@ -31,8 +31,8 @@ export async function create_set(data, workout_id) {
         body: JSON.stringify(data)
     })
     if (!response.ok) {
-        if (response.status === 401) {
-            throw new errors.AuthenticationError("Not authenticated");
+        if (response.status === 400) {
+            throw new errors.ValidationError("Invalid data");
         }
         else {
             console.log(response);
@@ -52,8 +52,8 @@ export async function update_set(data, set_id) {
         body: JSON.stringify(data)
     })
     if (!response.ok) {
-        if (response.status === 401) {
-            throw new errors.AuthenticationError("Not authenticated");
+        if (response.status === 400) {
+            throw new errors.ValidationError("Invalid data");
         }
         else {
             console.log(response);

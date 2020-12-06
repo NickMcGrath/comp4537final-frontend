@@ -1,24 +1,26 @@
-(async () => {
+import {create_set} from "../models/set_model.js";
+import {get_form_data, is_valid_form_data} from "./set-common.js";
+import errors from "./errors.js";
 
-})
+const create_button = document.getElementById("create-set");
+const feedback = document.getElementById("feedback");
+const url_params = new URLSearchParams(window.location.search);
+const workout_id = url_params.get('workout_id');
 
-export function is_valid_form_data(data) {
-    let valid = true;
-    if (!data.first_name.length || data.first_name.length > 45) {
-        document.getElementById("first-name-invalid").innerText = "must be between 1 and 45 characters";
-        valid = false;
+create_button.addEventListener("click", async () => {
+    let data = await get_form_data();
+    console.log(data);
+    if (!is_valid_form_data(data)) {
+        return;
     }
-    if (!data.last_name.length || data.last_name.length > 45) {
-        document.getElementById("last-name-invalid").innerText = "must be between 1 and 45 characters";
-        valid = false;
+    try {
+        await create_set(data, workout_id);
+        window.location.href = `./sets.html?workout_id=${workout_id}`;
+    } catch (err) {
+        if (err instanceof errors.ValidationError) {
+            feedback.innerHTML = err.message;
+        } else {
+            console.log(err);
+        }
     }
-    if (!data.reps || data.age < 1 || data.age > 130) {
-        document.getElementById("age-invalid").innerText = "must be between 1 and 130";
-        valid = false;
-    }
-    if (!data.weight_value || data.weight_value < 1 || data.weight_value > 1000) {
-        document.getElementById("weight-invalid").innerText = "must be between 1 and 1000";
-        valid = false;
-    }
-    return valid;
-}
+});

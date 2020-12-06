@@ -30,7 +30,7 @@ function render_workout(data) {
             Workout ${date}
         </div>
         <div class="col-3 text-right p-1">
-            <button type="button" class="btn btn-success" onclick="window.location.href='./sets.html?id=${data.id}'">Edit</button>
+            <button type="button" class="btn btn-success" onclick="window.location.href='./sets.html?workout_id=${data.id}'">Edit</button>
         </div>
     </div>`;
     let container = document.getElementById("main-content");
